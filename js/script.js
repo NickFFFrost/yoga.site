@@ -279,7 +279,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   
   persons.addEventListener("change", function () {
-    this.value = this.value.replace(/[\D]/g, "");
+    this.value = this.value.replace(/[\D]|^0/g, "");
     personsSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
@@ -294,7 +294,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
 
   restDays.addEventListener("change", function () {
-	  this.value = this.value.replace(/[\D]/g, "");
+	  this.value = this.value.replace(/[\D]|^0/g, "");
     daysSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
