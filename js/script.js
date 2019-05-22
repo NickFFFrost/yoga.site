@@ -277,29 +277,35 @@ window.addEventListener("DOMContentLoaded", () => {
 
   totalValue.innerHTML = 0;
 
+  
   persons.addEventListener("change", function () {
-
+    this.value = this.value.replace(/[\D]/g, "");
     personsSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
     if (restDays.value == "" || persons.value == "") {
       totalValue.innerHTML = 0;
     } else {
-      totalValue.innerHTML = total;
+      totalValue.innerHTML = total * place.options[place.selectedIndex].value;
     }
-
+		if(this.value == 0) {
+			this.value = this.value.replace(/0/, "");
+		}
   });
 
   restDays.addEventListener("change", function () {
-
+	  this.value = this.value.replace(/[\D]/g, "");
     daysSum = +this.value;
     total = (daysSum + personsSum) * 4000;
 
-    if (persons.value == "" || restDays.value == "") {
+    if (persons.value == "" || restDays.value == "" ) {
       totalValue.innerHTML = 0;
     } else {
-      totalValue.innerHTML = total;
+      totalValue.innerHTML = total * place.options[place.selectedIndex].value;
     }
+    if(this.value == 0) {
+			this.value = this.value.replace(/0/, "");
+		}
   });
 
   place.addEventListener("change", function () {
@@ -311,12 +317,5 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  counter.addEventListener("input", event => {
-
-    if (event.target.getAttribute("type") === "number") {
-      event.target.value = event.target.value.replace(/[^0-9]/g, "");
-    }
-
-  });
 
 });
